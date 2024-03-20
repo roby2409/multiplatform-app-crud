@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class UserEntity extends Equatable {
-  String name;
-  String id;
+  String? name;
+  String? id;
   String? address;
   String? email;
   String? phoneNumber;

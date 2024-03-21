@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Aceh",
+        "id": "1"
+    },
+    {
+        "name": "Medan",
+        "id": "2"
+    },
+    {
+        "name": "Padang",
+        "id": "3"
+    },
+    {
+        "name": "Jambi",
+        "id": "4"
+    },
+    {
+        "name": "Bengkulu",
+        "id": "5"
+    },
+    {
+        "name": "Palembang",
+        "id": "6"
+    },
+    {
+        "name": "Tangerang",
+        "id": "7"
+    },
+    {
+        "name": "Jakarta",
+        "id": "8"
+    },
+    {
+        "name": "Bandung",
+        "id": "9"
+    },
+    {
+        "name": "Yogyakarta",
+        "id": "10"
+    },
+    {
+        "name": "Surabaya",
+        "id": "11"
+    },
+    {
+        "name": "Malang",
+        "id": "12"
+    },
+    {
+        "name": "Tangerang Selatan",
+        "id": "13"
+    },
+    {
+        "name": "Fina",
+        "id": "14",
+        "address": "pekanbaru",
+        "email": "fina@gmail.com",
+        "phoneNumber": "08123123",
+        "city": "city 1"
+    },
+    {
+        "name": "Tiko",
+        "id": "15",
+        "address": "Tangerang",
+        "email": "tiko@gmail.com",
+        "phoneNumber": "0849098434",
+        "city": "Tangerang"
+    },
+    {
+        "name": "tes",
+        "id": "16",
+        "address": "Tangerang",
+        "email": "tiko@gmail.com",
+        "phoneNumber": "0849098434",
+        "city": "Tangerang"
+    },
+    {
+        "name": "Tiko",
+        "id": "17",
+        "address": "Tangerang",
+        "email": "tiko@gmail.com",
+        "phoneNumber": "0849098434",
+        "city": "Tangerang"
+    },
+    {
+        "name": "name 18",
+        "id": "18"
+    },
+    {
+        "name": "name 19",
+        "id": "19"
+    },
+    {
+        "name": "name 20",
+        "id": "20"
+    },
+    {
+        "name": "name 21",
+        "id": "21"
+    },
+    {
+        "name": "name 22",
+        "id": "22"
+    },
+    {
+        "name": "name 23",
+        "id": "23"
+    },
+    {
+        "name": "name 24",
+        "id": "24"
+    },
+    {
+        "name": "name 25",
+        "id": "25"
+    },
+    {
+        "name": "name 26",
+        "id": "26"
+    }
+]

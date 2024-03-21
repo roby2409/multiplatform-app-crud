@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Yovi",
+        "address": "tangerang",
+        "email": "yovi@gmail.com",
+        "phoneNumber": "08123123",
+        "city": "city 1",
+        "id": "1"
+    },
+    {
+        "name": "Paijo",
+        "address": "tangerang",
+        "email": "paijo@gmail.com",
+        "phoneNumber": "08123123",
+        "city": "city 2",
+        "id": "2"
+    },
+    {
+        "name": "paijo",
+        "address": "sampun",
+        "email": "haha@gm.com",
+        "phoneNumber": "0921",
+        "city": "Jambi",
+        "id": "3"
+    },
+    {
+        "name": "coba",
+        "address": "Jakarta",
+        "email": "das.com",
+        "phoneNumber": "03232098434",
+        "city": "Jakarta",
+        "id": "4"
+    },
+    {
+        "name": "janeta",
+        "address": "mayata",
+        "email": "masaka@gmailc.co",
+        "phoneNumber": "03213",
+        "city": "Palembang",
+        "id": "5"
+    },
+    {
+        "name": "andy",
+        "address": "fare",
+        "email": "masaka@gmailc.co",
+        "phoneNumber": "03213",
+        "city": "Aceh",
+        "id": "6"
+    },
+    {
+        "name": "upin",
+        "address": "Jo durian runtuh",
+        "email": "upin@ipin.co.id",
+        "phoneNumber": "90123",
+        "city": "Tangerang Selatan",
+        "id": "7"
+    },
+    {
+        "name": "Reza Fahlevi",
+        "address": "BSD",
+        "email": "reza@gmail.com",
+        "phoneNumber": "0811223344",
+        "city": "Tangerang",
+        "id": "8"
+    },
+    {
+        "name": "jdjd",
+        "address": "hrhr",
+        "email": "hrhr",
+        "phoneNumber": "hrhr",
+        "city": "jdjr",
+        "id": "9"
+    }
+]

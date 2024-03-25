@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 abstract class UserRemoteDataSource {
   Future<List<User>> getAllUsers();
-  Future<String> addUser(Map<String, dynamic> payload);
+  Future<User> addUser(Map<String, dynamic> payload);
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -25,11 +25,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<String> addUser(Map<String, dynamic> payload) async {
+  Future<User> addUser(Map<String, dynamic> payload) async {
     final request = await client
         .post(Uri.parse('${baseUrl}user'), body: payload)
         .timeout(const Duration(seconds: secondTimeout));
-    await helperProcess.returnResponse(request);
-    return 'Success add user';
+    final response = await helperProcess.returnResponse(request);
+    return userFromJson(response.body);
   }
 }

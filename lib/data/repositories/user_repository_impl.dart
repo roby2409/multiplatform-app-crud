@@ -25,11 +25,11 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, String>> addUser(UserEntity user) async {
+  Future<Either<Failure, UserEntity>> addUser(UserEntity user) async {
     try {
       final payloadUser = User.fromEntity(user);
       final result = await remoteDataSource.addUser(payloadUser.toJson());
-      return Right(result);
+      return Right(result.toEntity());
     } on ServerException catch (e) {
       return Left(ServerFailure(e.errorMessage));
     }

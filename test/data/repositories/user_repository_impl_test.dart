@@ -6,6 +6,7 @@ import 'package:multiplatform_app_crud/common/failure.dart';
 import 'package:multiplatform_app_crud/data/models/user.dart';
 import 'package:multiplatform_app_crud/data/repositories/user_repository_impl.dart';
 import 'package:multiplatform_app_crud/domain/entities/user_entity.dart';
+import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
@@ -28,7 +29,7 @@ void main() {
       id: "1");
 
   final tUserModel = User.fromEntity(tUser);
-
+  final tUserAddedModel = User.fromEntity(userAdded);
   final tUserModelList = <User>[tUserModel];
   final tUserList = <UserEntity>[tUser];
   group('user repository has fetch all user, add user', () {
@@ -67,12 +68,12 @@ void main() {
           'should return success message when the call to post user data source is successful',
           () async {
         // arrange
-        when(mockRemoteDataSource.addUser(tUserModel.toJson()))
-            .thenAnswer((_) async => "Success add user");
+        when(mockRemoteDataSource.addUser(tUserAddedModel.toJson()))
+            .thenAnswer((_) async => tUserAddedModel);
         // act
-        final result = await repository.addUser(tUserModel.toEntity());
+        final result = await repository.addUser(tUserAddedModel.toEntity());
         // assert
-        expect(result, const Right('Success add user'));
+        expect(result, Right(userAdded));
       });
 
       test(
@@ -84,7 +85,7 @@ void main() {
         // act
         final result = await repository.addUser(tUserModel.toEntity());
         // assert
-        expect(result, const Left(DatabaseFailure('Failed to add User')));
+        expect(result, const Left(ServerFailure('Failed to add User')));
       });
     });
   });

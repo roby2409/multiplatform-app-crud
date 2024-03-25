@@ -5,6 +5,8 @@ import 'package:multiplatform_app_crud/domain/entities/user_entity.dart';
 List<User> allUserFromJson(String str) =>
     List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
 
+User userFromJson(String str) => User.fromJson(json.decode(str));
+
 String userToJson(List<User> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

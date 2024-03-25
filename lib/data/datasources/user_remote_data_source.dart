@@ -21,7 +21,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         .timeout(const Duration(seconds: secondTimeout));
 
     final response = await helperProcess.returnResponse(request);
-    return userFromJson(response.body);
+    return allUserFromJson(response.body);
   }
 
   @override

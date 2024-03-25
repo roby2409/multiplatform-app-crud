@@ -24,7 +24,7 @@ void main() {
   });
 
   group('Get All Users', () {
-    final tUserList = userFromJson(readJson('dummy_data/users.json'));
+    final tUserList = allUserFromJson(readJson('dummy_data/users.json'));
 
     test('should return list of User Model when the response code is 200',
         () async {

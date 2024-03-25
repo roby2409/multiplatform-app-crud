@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:multiplatform_app_crud/domain/entities/user_entity.dart';
 
-List<User> userFromJson(String str) =>
+List<User> allUserFromJson(String str) =>
     List<User>.from(json.decode(str).map((x) => User.fromJson(x)));
 
 String userToJson(List<User> data) =>

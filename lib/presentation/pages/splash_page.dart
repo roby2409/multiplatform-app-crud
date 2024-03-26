@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:multiplatform_app_crud/common/theme.dart';
+import 'package:multiplatform_app_crud/routes/routes.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class SplashPage extends StatefulWidget {
@@ -11,6 +14,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    Timer(const Duration(milliseconds: 2000), () {
+      Navigator.pushReplacementNamed(context, AccurateApp.userPage);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

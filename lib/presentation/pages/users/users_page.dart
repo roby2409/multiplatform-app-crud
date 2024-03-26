@@ -1,0 +1,167 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multiplatform_app_crud/common/theme.dart';
+import 'package:multiplatform_app_crud/domain/entities/user_entity.dart';
+import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
+import 'package:multiplatform_app_crud/presentation/widgets/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+
+import 'widget/card_user.dart';
+
+class UsersPage extends StatefulWidget {
+  const UsersPage({super.key});
+
+  @override
+  State<UsersPage> createState() => _UsersPageState();
+}
+
+class _UsersPageState extends State<UsersPage> {
+  final _searchInputController = TextEditingController();
+  final _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => Provider.of<ListAllUsersBloc>(context, listen: false)
+          .add(FetchAllPengguna()),
+    );
+  }
+
+  void _resetSearchInput() {
+    _searchInputController.clear();
+    _focusNode.unfocus();
+  }
+
+  @override
+  void dispose() {
+    _resetSearchInput();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: kGreenColor,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => {},
+          tooltip: 'add user',
+          child: const Icon(Icons.person_add),
+        ), // This tra
+        body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          const SizedBox(height: 10),
+          Expanded(
+              child: Stack(children: [
+            Positioned(
+                top: 2.5.h,
+                child: RefreshIndicator(
+                    onRefresh: () async {
+                      _resetSearchInput();
+                      Provider.of<ListAllUsersBloc>(context, listen: false)
+                          .add(FetchAllPengguna());
+                    },
+                    child: SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Container(
+                            color: kBgGreenColorContainerLight,
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height,
+                            padding: const EdgeInsets.all(18.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "All Users",
+                                      style: TextStyle(
+                                          fontSize: 3.sh,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 2.h,
+                                  ),
+                                  CustomTextFormField(
+                                    height: 8.h,
+                                    hintText: "Search for users by city",
+                                    hintTextStyle: greyTextStyle.copyWith(
+                                        fontSize: 14.sp, fontWeight: regular),
+                                    filled: true,
+                                    isDense: true,
+                                    controller: _searchInputController,
+                                    focusNode: _focusNode,
+                                    onChanged: (String city) {
+                                      context
+                                          .read<ListAllUsersBloc>()
+                                          .add(FilterByCity(city));
+                                    },
+                                    borderWidth: 1.0,
+                                    borderRadius: 10,
+                                    borderStyle: BorderStyle.solid,
+                                    focusedBorderColor: kBlueColor,
+                                    hasSuffixIcon: true,
+                                    suffixIconWidget: const Icon(Icons.search,
+                                        color: kGreenColor),
+                                  ),
+                                  SizedBox(
+                                    height: 2.h,
+                                  ),
+                                  BlocBuilder<ListAllUsersBloc,
+                                      ListAllUsersState>(
+                                    builder: (context, state) {
+                                      if (state is ListAllUsersEmpty) {
+                                        return WidgetElseState(
+                                            widget: Text(state.message));
+                                      }
+                                      if (state is ListAllUsersFailure) {
+                                        return WidgetElseState(
+                                            widget:
+                                                Text(state.failure.message));
+                                      }
+                                      if (state is ListAllUsersLoaded) {
+                                        final result = state.users;
+                                        return Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: ListView.builder(
+                                                  key: const Key('search_item'),
+                                                  padding: EdgeInsets.zero,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    Color cardColor = index %
+                                                                2 ==
+                                                            0
+                                                        ? kBgGreenColorContainerLight
+                                                        : kBgGreenColorContainer;
+                                                    UserEntity dataPengguna =
+                                                        result[index];
+                                                    return CardUsers(
+                                                      user: dataPengguna,
+                                                      cardColor: cardColor,
+                                                    );
+                                                  },
+                                                  itemCount: result.length,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 4.h,
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      }
+                                      return const WidgetElseState(
+                                          widget: LoadingWidget());
+                                    },
+                                  ),
+                                ])))))
+          ]))
+        ]));
+  }
+}

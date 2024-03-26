@@ -27,7 +27,7 @@ class CardUsers extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              teksCardWidget("Nama", user.city),
+              teksCardWidget("Nama", user.name),
               const SizedBox(
                 height: 5,
               ),

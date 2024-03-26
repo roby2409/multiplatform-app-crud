@@ -84,17 +84,17 @@ class _UsersPageState extends State<UsersPage> {
                                   ),
                                   CustomTextFormField(
                                     height: 8.h,
-                                    hintText: "Search for users by city",
+                                    hintText: "Search users",
                                     hintTextStyle: greyTextStyle.copyWith(
                                         fontSize: 14.sp, fontWeight: regular),
                                     filled: true,
                                     isDense: true,
                                     controller: _searchInputController,
                                     focusNode: _focusNode,
-                                    onChanged: (String city) {
+                                    onChanged: (String user) {
                                       context
                                           .read<ListAllUsersBloc>()
-                                          .add(FilterByCity(city));
+                                          .add(SearchUsers(user));
                                     },
                                     borderWidth: 1.0,
                                     borderRadius: 10,

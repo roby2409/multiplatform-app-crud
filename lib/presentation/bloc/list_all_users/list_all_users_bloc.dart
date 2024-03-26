@@ -29,15 +29,15 @@ class ListAllUsersBloc extends Bloc<ListAllUsersEvent, ListAllUsersState> {
       });
     });
 
-    on<FilterByCity>(
+    on<SearchUsers>(
       (event, emit) async {
         if (state is ListAllUsersLoaded) {
           final currentState = (state as ListAllUsersLoaded);
           final resultFilter = usersLoaded
               .where((element) =>
-                  element.city
+                  element.name
                       ?.toLowerCase()
-                      .contains(event.city.toLowerCase()) ??
+                      .contains(event.nameUser.toLowerCase()) ??
                   false)
               .toList();
           if (resultFilter.isNotEmpty) {

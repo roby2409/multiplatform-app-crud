@@ -8,13 +8,13 @@ abstract class ListAllUsersEvent extends Equatable {
 
 class FetchAllPengguna extends ListAllUsersEvent {}
 
-class FilterByCity extends ListAllUsersEvent {
-  final String city;
+class SearchUsers extends ListAllUsersEvent {
+  final String nameUser;
 
-  const FilterByCity(
-    this.city,
+  const SearchUsers(
+    this.nameUser,
   );
 
   @override
-  List<Object> get props => [city];
+  List<Object> get props => [nameUser];
 }

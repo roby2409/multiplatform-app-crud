@@ -100,13 +100,13 @@ void main() {
 
   group('Filters Users', () {
     blocTest<ListAllUsersBloc, ListAllUsersState>(
-      'should emit ListAllUsersLoading, ListAllUsersLoaded on FilterByCity event with matching users',
+      'should emit ListAllUsersLoading, ListAllUsersLoaded on SearchUsers event with matching users',
       build: () {
         userBloc.usersLoaded = filteredUsersList;
         return userBloc;
       },
       act: (bloc) => bloc.add(
-          const FilterByCity('Palembang')), // User with 'Palembang' city exists
+          const SearchUsers('Palembang')), // User with 'Palembang' city exists
       expect: () => [
         ListAllUsersLoaded(filteredUsersList),
       ],

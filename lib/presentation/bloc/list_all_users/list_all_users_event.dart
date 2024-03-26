@@ -18,3 +18,14 @@ class SearchUsers extends ListAllUsersEvent {
   @override
   List<Object> get props => [nameUser];
 }
+
+class FilterByCity extends ListAllUsersEvent {
+  final List<String> cities;
+
+  const FilterByCity(
+    this.cities,
+  );
+
+  @override
+  List<Object> get props => [cities];
+}

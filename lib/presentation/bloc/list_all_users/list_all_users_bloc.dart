@@ -53,5 +53,32 @@ class ListAllUsersBloc extends Bloc<ListAllUsersEvent, ListAllUsersState> {
       },
       transformer: sequential(),
     );
+
+    on<FilterByCity>(
+      (event, emit) async {
+        if (state is ListAllUsersLoaded) {
+          final currentState = (state as ListAllUsersLoaded);
+          if (event.cities.isNotEmpty) {
+            final resultFilter = usersLoaded
+                .where((element) => event.cities
+                    .map((city) => city.toLowerCase())
+                    .contains(element.city?.toLowerCase()))
+                .toList();
+
+            if (resultFilter.isNotEmpty) {
+              final updatedState =
+                  currentState.copyWith(searchResult: resultFilter);
+              emit(updatedState);
+            } else {
+              emit(const ListAllUsersEmpty("Data not found"));
+            }
+          } else {
+            emit(ListAllUsersLoaded(usersLoaded));
+          }
+        } else {
+          emit(ListAllUsersLoaded(usersLoaded));
+        }
+      },
+    );
   }
 }

@@ -5,6 +5,7 @@ import 'package:multiplatform_app_crud/common/theme.dart';
 import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'injection.dart' as di;
+import 'presentation/bloc/cities/cities_bloc.dart';
 import 'routes/navigation.dart';
 
 void main() async {
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<ListAllUsersBloc>(
           create: (_) => di.locator<ListAllUsersBloc>(),
         ),
+        BlocProvider<CitiesBloc>(
+          create: (_) => di.locator<CitiesBloc>(),
+        )
       ],
       child: ResponsiveSizer(builder: (context, orientation, screenType) {
         return MaterialApp(

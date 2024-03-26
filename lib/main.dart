@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multiplatform_app_crud/common/theme.dart';
+import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'injection.dart' as di;
 import 'routes/navigation.dart';
 
 void main() async {
@@ -9,6 +12,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  di.init();
   runApp(MyApp());
 }
 
@@ -19,19 +23,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(builder: (context, orientation, screenType) {
-      return MaterialApp(
-          title: 'Accurate CPSSOFT',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData.light().copyWith(
-            primaryColor: kWhiteColor,
-            colorScheme: kColorScheme.copyWith(secondary: kPrimaryColor),
-            bottomNavigationBarTheme: bottomNavigationBarTheme,
-          ),
-          navigatorKey: navigatorKey, // Set the navigatorKey
-          onGenerateRoute: mapRegisterRoutesWithParameters,
-          initialRoute: '/',
-          routes: mapRegisterRoutes());
-    });
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ListAllUsersBloc>(
+          create: (_) => di.locator<ListAllUsersBloc>(),
+        ),
+      ],
+      child: ResponsiveSizer(builder: (context, orientation, screenType) {
+        return MaterialApp(
+            title: 'Accurate CPSSOFT',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.light().copyWith(
+              primaryColor: kWhiteColor,
+              colorScheme: kColorScheme.copyWith(secondary: kPrimaryColor),
+              bottomNavigationBarTheme: bottomNavigationBarTheme,
+            ),
+            navigatorKey: navigatorKey, // Set the navigatorKey
+            onGenerateRoute: mapRegisterRoutesWithParameters,
+            initialRoute: '/',
+            routes: mapRegisterRoutes());
+      }),
+    );
   }
 }

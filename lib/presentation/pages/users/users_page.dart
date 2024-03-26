@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multiplatform_app_crud/common/theme.dart';
 import 'package:multiplatform_app_crud/domain/entities/user_entity.dart';
+import 'package:multiplatform_app_crud/presentation/bloc/cities/cities_bloc.dart';
 import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
+import 'package:multiplatform_app_crud/presentation/pages/users/widget/cities_list.dart';
 import 'package:multiplatform_app_crud/presentation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -19,12 +21,24 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   final _searchInputController = TextEditingController();
   final _focusNode = FocusNode();
+  List<String> _selectedCities = [];
+
+  void _handleSelectCities(List<String> selectedCities) {
+    setState(() {
+      _selectedCities = selectedCities;
+    });
+    context.read<ListAllUsersBloc>().add(FilterByCity(_selectedCities));
+  }
+
   @override
   void initState() {
     super.initState();
     Future.microtask(
       () => Provider.of<ListAllUsersBloc>(context, listen: false)
           .add(FetchAllPengguna()),
+    );
+    Future.microtask(
+      () => Provider.of<CitiesBloc>(context, listen: false).add(CitiesEvent()),
     );
   }
 
@@ -70,14 +84,22 @@ class _UsersPageState extends State<UsersPage> {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "All Users",
-                                      style: TextStyle(
-                                          fontSize: 3.sh,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "All Users",
+                                        style: TextStyle(
+                                            fontSize: 3.sh,
+                                            fontWeight: FontWeight.bold,
+                                            color: kGreenColorSecondButton),
+                                      ),
+                                      CitiesList(
+                                        selectedCities: _selectedCities,
+                                        onSelectCities: _handleSelectCities,
+                                      )
+                                    ],
                                   ),
                                   SizedBox(
                                     height: 2.h,

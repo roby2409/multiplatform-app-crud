@@ -145,6 +145,8 @@ class _UsersPageState extends State<UsersPage> {
                                       }
                                       if (state is ListAllUsersLoaded) {
                                         final result = state.users;
+                                        final bool isSorted =
+                                            state.isSortedAscending;
                                         return Expanded(
                                           child: Column(
                                             crossAxisAlignment:
@@ -152,6 +154,37 @@ class _UsersPageState extends State<UsersPage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "Sort by name",
+                                                    style: TextStyle(
+                                                        fontSize: 14.sp),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      context
+                                                          .read<
+                                                              ListAllUsersBloc>()
+                                                          .add(SortUsers(
+                                                              !isSorted));
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(isSorted
+                                                            ? Icons.arrow_upward
+                                                            : Icons
+                                                                .arrow_downward),
+                                                        const Icon(Icons
+                                                            .sort_by_alpha),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 2.h,
+                                              ),
                                               Expanded(
                                                 child: ListView.builder(
                                                   key: const Key('search_item'),

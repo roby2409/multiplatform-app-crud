@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multiplatform_app_crud/common/theme.dart';
 import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
+import 'package:multiplatform_app_crud/presentation/bloc/post_data/post_data_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'injection.dart' as di;
 import 'presentation/bloc/cities/cities_bloc.dart';
@@ -31,7 +32,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CitiesBloc>(
           create: (_) => di.locator<CitiesBloc>(),
-        )
+        ),
+        BlocProvider<PostDataCubit>(
+          create: (_) => di.locator<PostDataCubit>(),
+        ),
       ],
       child: ResponsiveSizer(builder: (context, orientation, screenType) {
         return MaterialApp(

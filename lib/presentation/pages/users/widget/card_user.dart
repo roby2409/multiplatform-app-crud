@@ -22,33 +22,25 @@ class CardUsers extends StatelessWidget {
           border: Border.all(color: kGreyColorLight),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              teksCardWidget("Nama", user.name),
-              const SizedBox(
-                height: 5,
-              ),
-              teksCardWidget("Address", user.address),
-              const SizedBox(
-                height: 5,
-              ),
-              teksCardWidget("Email", user.email),
-            ]),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                teksCardWidget("Kota", user.city),
-                const SizedBox(
-                  height: 5,
-                ),
-                teksCardWidget("No Phone", user.phoneNumber),
-              ],
-            )
-          ],
-        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          teksCardWidget("Nama", user.name),
+          SizedBox(
+            height: 1.h,
+          ),
+          teksCardWidget("Address", user.address),
+          SizedBox(
+            height: 1.h,
+          ),
+          teksCardWidget("Email", user.email),
+          SizedBox(
+            height: 1.h,
+          ),
+          teksCardWidget("Kota", user.city),
+          SizedBox(
+            height: 1.h,
+          ),
+          teksCardWidget("No Phone", user.phoneNumber),
+        ]),
       ),
     );
   }

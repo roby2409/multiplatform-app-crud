@@ -6,6 +6,7 @@ import 'package:multiplatform_app_crud/presentation/bloc/cities/cities_bloc.dart
 import 'package:multiplatform_app_crud/presentation/bloc/list_all_users/list_all_users_bloc.dart';
 import 'package:multiplatform_app_crud/presentation/pages/users/widget/cities_list.dart';
 import 'package:multiplatform_app_crud/presentation/widgets/widgets.dart';
+import 'package:multiplatform_app_crud/routes/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -58,7 +59,8 @@ class _UsersPageState extends State<UsersPage> {
     return Scaffold(
         backgroundColor: kGreenColor,
         floatingActionButton: FloatingActionButton(
-          onPressed: () => {},
+          onPressed: () =>
+              Navigator.pushNamed(context, AccurateApp.addUserPage),
           tooltip: 'add user',
           child: const Icon(Icons.person_add),
         ), // This tra

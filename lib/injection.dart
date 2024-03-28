@@ -1,7 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:multiplatform_app_crud/data/datasources/city_remote_data_source.dart';
 import 'package:multiplatform_app_crud/domain/repositories/city_repository.dart';
+import 'package:multiplatform_app_crud/domain/usecases/add_user.dart';
 import 'package:multiplatform_app_crud/presentation/bloc/cities/cities_bloc.dart';
+import 'package:multiplatform_app_crud/presentation/bloc/post_data/post_data_cubit.dart';
 import 'common/helper_process.dart';
 import 'common/http_ssl_pinning.dart';
 import 'data/datasources/user_remote_data_source.dart';
@@ -19,8 +21,10 @@ void init() {
   locator.registerLazySingleton<ListAllUsersBloc>(
       () => ListAllUsersBloc(locator()));
   locator.registerLazySingleton<CitiesBloc>(() => CitiesBloc(locator()));
+  locator.registerLazySingleton<PostDataCubit>(() => PostDataCubit(locator()));
   // usecase
   locator.registerLazySingleton<GetAllUser>(() => GetAllUser(locator()));
+  locator.registerLazySingleton<AddUser>(() => AddUser(locator()));
   locator.registerLazySingleton<GetAllCities>(() => GetAllCities(locator()));
 
   // repository

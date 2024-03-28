@@ -22,21 +22,18 @@ class ListAllUsersEmpty extends ListAllUsersState {
 
 class ListAllUsersLoaded extends ListAllUsersState {
   final List<UserEntity> users;
+  final bool isSortedAscending;
 
-  const ListAllUsersLoaded(
-    this.users,
-  );
+  const ListAllUsersLoaded(this.users, {this.isSortedAscending = false});
 
-  ListAllUsersLoaded copyWith({
-    List<UserEntity>? searchResult,
-  }) {
-    return ListAllUsersLoaded(
-      searchResult ?? users,
-    );
+  ListAllUsersLoaded copyWith(
+      {List<UserEntity>? searchResult, bool? newValueSort}) {
+    return ListAllUsersLoaded(searchResult ?? users,
+        isSortedAscending: newValueSort ?? isSortedAscending);
   }
 
   @override
-  List<Object> get props => [users];
+  List<Object> get props => [users, isSortedAscending];
 }
 
 class ListAllUsersFailure extends ListAllUsersState {

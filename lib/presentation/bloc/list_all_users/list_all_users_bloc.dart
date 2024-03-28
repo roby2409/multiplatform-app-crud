@@ -80,5 +80,19 @@ class ListAllUsersBloc extends Bloc<ListAllUsersEvent, ListAllUsersState> {
         }
       },
     );
+
+    on<SortUsers>(
+      (event, emit) {
+        if (state is ListAllUsersLoaded) {
+          final currentState = state as ListAllUsersLoaded;
+          final sortedUsers = [...currentState.users];
+          sortedUsers.sort((a, b) => event.sortAscending
+              ? a.name!.compareTo(b.name!)
+              : b.name!.compareTo(a.name!));
+          emit(currentState.copyWith(
+              searchResult: sortedUsers, newValueSort: event.sortAscending));
+        }
+      },
+    );
   }
 }

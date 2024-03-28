@@ -29,3 +29,12 @@ class FilterByCity extends ListAllUsersEvent {
   @override
   List<Object> get props => [cities];
 }
+
+class SortUsers extends ListAllUsersEvent {
+  final bool sortAscending;
+
+  const SortUsers(this.sortAscending);
+
+  @override
+  List<Object?> get props => [sortAscending];
+}
